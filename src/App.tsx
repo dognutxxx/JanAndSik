@@ -223,6 +223,7 @@ export default function App() {
                   </div>
                 </div>
               </div>
+
               <Countdown />
             </div>
           </div>
@@ -353,7 +354,7 @@ export default function App() {
                 alt="QR Code สำหรับใส่ซอง"
                 className="w-52 h-52 md:w-56 md:h-56 object-contain"
               />
-              <p className="mt-4 font-semibold text-text-brown text-lg">น.ส. เจนนภา รักพรม</p>
+              <p className="mt-4 font-semibold text-text-brown text-lg">เจนนภา รักพรม</p>
             </div>
             <p className="mt-8 text-text-brown/80 font-serif italic">Thank you sincerely</p>
           </motion.div>
