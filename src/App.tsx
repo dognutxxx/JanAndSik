@@ -16,7 +16,7 @@ import {
   X
 } from 'lucide-react';
 
-const WEDDING_DATE = new Date('2026-02-26T16:00:00');
+const WEDDING_DATE = new Date('2026-02-26T08:30:00');
 
 function Countdown() {
   const [timeLeft, setTimeLeft] = useState({
@@ -50,19 +50,19 @@ function Countdown() {
         <div className="bg-primary/10 w-14 h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center border border-primary/20">
           <span className="text-xl md:text-2xl font-bold text-text-brown">{timeLeft.days}</span>
         </div>
-        <span className="text-[10px] uppercase tracking-widest mt-2 font-bold text-primary">Days</span>
+        <span className="text-[16px] uppercase tracking-widest mt-2 font-bold text-primary">Days</span>
       </div>
       <div className="flex flex-col items-center">
         <div className="bg-primary/10 w-14 h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center border border-primary/20">
           <span className="text-xl md:text-2xl font-bold text-text-brown">{timeLeft.hours}</span>
         </div>
-        <span className="text-[10px] uppercase tracking-widest mt-2 font-bold text-primary">Hours</span>
+        <span className="text-[16px] uppercase tracking-widest mt-2 font-bold text-primary">Hours</span>
       </div>
       <div className="flex flex-col items-center">
         <div className="bg-primary/10 w-14 h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center border border-primary/20">
           <span className="text-xl md:text-2xl font-bold text-text-brown">{timeLeft.minutes}</span>
         </div>
-        <span className="text-[10px] uppercase tracking-widest mt-2 font-bold text-primary">Mins</span>
+        <span className="text-[16px] uppercase tracking-widest mt-2 font-bold text-primary">Mins</span>
       </div>
     </div>
   );
@@ -78,7 +78,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Flower className="text-primary w-8 h-8" />
-            <h2 className="text-lg font-extrabold tracking-tight text-text-brown">C&J</h2>
+            <h2 className="text-lg font-extrabold tracking-tight text-text-brown">J&S</h2>
           </div>
           
           <nav className="hidden md:flex items-center gap-8">
@@ -90,11 +90,16 @@ export default function App() {
           </nav>
 
           <div className="flex items-center gap-4">
-            <button className="bg-primary text-white px-6 py-2 rounded-full font-bold text-sm hover:shadow-lg hover:shadow-primary/20 transition-all uppercase tracking-wider">
-              RSVP
+            <button className="bg-primary text-white px-6 py-2 rounded-full font-bold text-sm hover:shadow-lg hover:shadow-primary/20 transition-all uppercase tracking-wider hidden sm:inline-block">
+              J&S
             </button>
-            <button className="md:hidden text-text-brown" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-              {isMenuOpen ? <X /> : <Menu />}
+            <button 
+              type="button"
+              className="md:hidden p-2 text-text-brown hover:text-primary transition-colors rounded-lg hover:bg-primary/10"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label={isMenuOpen ? 'ปิดเมนู' : 'เปิดเมนู'}
+            >
+              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </div>
@@ -126,39 +131,42 @@ export default function App() {
       </header>
 
       <main className="flex-1 pt-24 pb-20 relative flex flex-col items-center">
-        {/* Background Florals */}
-        <div className="absolute top-0 left-0 w-64 h-64 md:w-80 md:h-80 opacity-60 pointer-events-none">
-          <img 
-            alt="blush and dusty rose boho florals" 
-            className="w-full h-full object-contain" 
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHGkSJTu6eAMK4uupnoE7Rtq7limccua6m9HKRfbhYlkpqm4FLtllPurcsq4oyYesubvl7dbQYkl5ATWeB9GsqwxCZ6X5vAfCimBqYnuXLrtKLmDlL3W7rzD1LRf7AaEvgzBRE3Llv4bmzTm66dwLqk22sp0NHK3kjWQyanP7exMf9Gr2adgQbXDv5b9KKp4vEDh3sXFP0CGfjVrzw5Tb9vgpE2VLzyT0AtmrjQiql9r82TzpY72Ko9Vq6h6XkC5Td6aXtrGR1FtP6"
-            referrerPolicy="no-referrer"
-          />
-        </div>
-        <div className="absolute bottom-0 right-0 w-80 h-80 md:w-96 md:h-96 opacity-60 pointer-events-none">
-          <img 
-            alt="pampas grass and coral florals" 
-            className="w-full h-full object-contain transform -scale-x-100" 
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-VQY26-FmuJwYPptZ9VVrmK4Ca5AU8JY_VelCxSGnDw9XqRfa5JxHDWxUdbQf1IEubrtNR4j1qIuTC7vB0sarAAcLYiw3xDkV9WRO4F7fpY8R0oLU-RwdW-8SWIJ-cUYkxJ1MMMJGQnWIAj3Tz-7ffUgcOE8RtydvYuXkTlIGlSjwE972W9bZYDDonq2Fj5BYvqAjeYHjUPb-aWcfGYjozZdRex0noGIyORsssIB9Fn2QQp8IKgGbjeNiuVwoUfEMDydGCyC-aM3I"
-            referrerPolicy="no-referrer"
-          />
+        {/* เลเยอร์ดอกไม้ — อยู่ด้านหลังเสมอ (isolate + z-0) */}
+        <div className="absolute inset-0 z-0 isolate pointer-events-none">
+          <div className="absolute top-0 left-0 w-64 h-64 md:w-80 md:h-80 opacity-60">
+            <img 
+              alt="blush and dusty rose boho florals" 
+              className="w-full h-full object-contain" 
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHGkSJTu6eAMK4uupnoE7Rtq7limccua6m9HKRfbhYlkpqm4FLtllPurcsq4oyYesubvl7dbQYkl5ATWeB9GsqwxCZ6X5vAfCimBqYnuXLrtKLmDlL3W7rzD1LRf7AaEvgzBRE3Llv4bmzTm66dwLqk22sp0NHK3kjWQyanP7exMf9Gr2adgQbXDv5b9KKp4vEDh3sXFP0CGfjVrzw5Tb9vgpE2VLzyT0AtmrjQiql9r82TzpY72Ko9Vq6h6XkC5Td6aXtrGR1FtP6"
+              referrerPolicy="no-referrer"
+            />
+          </div>
+          <div className="absolute bottom-0 right-0 w-80 h-80 md:w-96 md:h-96 opacity-60">
+            <img 
+              alt="pampas grass and coral florals" 
+              className="w-full h-full object-contain transform -scale-x-100" 
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-VQY26-FmuJwYPptZ9VVrmK4Ca5AU8JY_VelCxSGnDw9XqRfa5JxHDWxUdbQf1IEubrtNR4j1qIuTC7vB0sarAAcLYiw3xDkV9WRO4F7fpY8R0oLU-RwdW-8SWIJ-cUYkxJ1MMMJGQnWIAj3Tz-7ffUgcOE8RtydvYuXkTlIGlSjwE972W9bZYDDonq2Fj5BYvqAjeYHjUPb-aWcfGYjozZdRex0noGIyORsssIB9Fn2QQp8IKgGbjeNiuVwoUfEMDydGCyC-aM3I"
+              referrerPolicy="no-referrer"
+            />
+          </div>
         </div>
 
+        {/* เนื้อหาทั้งหมด — อยู่ด้านหน้า (z-10) */}
+        <div className="relative z-10 w-full flex flex-col items-center flex-1">
         {/* Main Invitation Card */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="relative z-10 w-full max-w-5xl px-4"
+          className="w-full max-w-5xl px-4"
         >
           <div className="paper-texture rounded-2xl shadow-2xl overflow-hidden border border-primary/10 flex flex-col md:flex-row min-h-[650px]">
-            {/* Image Side */}
-            <div className="w-full md:w-5/12 relative h-72 md:h-auto overflow-hidden">
+            {/* Image Side - mobile: สูงขึ้น + object-position ให้เห็นหัวทั้งคู่ */}
+            <div className="w-full md:w-5/12 relative h-80 min-h-[320px] md:h-auto overflow-hidden">
               <img 
                 alt="Jennapa & Sittisak Formal Portrait" 
-                className="absolute inset-0 w-full h-full object-cover" 
-                src="https://picsum.photos/seed/wedding-formal/800/1200"
-                referrerPolicy="no-referrer"
+                className="absolute inset-0 w-full h-full object-cover object-top md:object-center" 
+                src="/assets/jenna-sittisak-formal.png"
               />
               <div className="absolute inset-0 bg-primary/20 mix-blend-overlay"></div>
               <div className="absolute inset-0 flex items-end p-10 bg-gradient-to-t from-text-brown/60 to-transparent">
@@ -187,17 +195,22 @@ export default function App() {
                     <Calendar className="text-primary w-6 h-6" />
                   </div>
                   <div className="text-left">
-                    <p className="text-[10px] uppercase tracking-widest text-primary font-bold">The Date</p>
-                    <p className="font-bold text-text-brown text-lg">Thursday, February 26th, 2026</p>
+                    <p className="text-[16px] uppercase tracking-widest text-coral-pink font-bold">The Date</p>
+                    <p className="font-bold text-text-brown text-lg">Thursday, February 26, 2026</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-5 bg-beige-warm/40 p-5 rounded-xl border border-primary/10 backdrop-blur-sm">
                   <div className="bg-white/80 p-3 rounded-full shadow-sm">
                     <Clock className="text-primary w-6 h-6" />
                   </div>
-                  <div className="text-left">
-                    <p className="text-[10px] uppercase tracking-widest text-primary font-bold">The Time</p>
-                    <p className="font-bold text-text-brown text-lg">4:00 PM In the Afternoon</p>
+                  <div className="text-left flex-1 min-w-0">
+                    <p className="text-[16px] uppercase tracking-widest text-coral-pink font-bold">The Time</p>
+                    <p className="font-bold text-text-brown text-lg">8:30 AM</p>
+                    <p className="text-text-brown/90 text-sm mt-2 space-y-0.5">
+                      <span className="block">Ceremony begins 8:30</span>
+                      <span className="block">Thread tying ceremony</span>
+                      <span className="block">Reception & meal 10:30</span>
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-center gap-5 bg-beige-warm/40 p-5 rounded-xl border border-primary/10 backdrop-blur-sm">
@@ -205,32 +218,45 @@ export default function App() {
                     <MapPin className="text-primary w-6 h-6" />
                   </div>
                   <div className="text-left">
-                    <p className="text-[10px] uppercase tracking-widest text-primary font-bold">The Venue</p>
-                    <p className="font-bold text-text-brown text-lg">The Glasshouse, Cotswolds</p>
+                    <p className="text-[16px] uppercase tracking-widest text-coral-pink font-bold">Place</p>
+                    <p className="font-bold text-text-brown text-lg">6 Moo 3, Non Charoen, Ban Kruat, Buriram</p>
                   </div>
                 </div>
               </div>
-
               <Countdown />
-
-              <button className="w-full max-w-xs bg-text-brown text-beige-warm py-4 rounded-xl font-bold text-lg hover:bg-primary transition-all shadow-xl shadow-text-brown/10 uppercase tracking-widest">
-                Kindly RSVP by May 1st
-              </button>
-            </div>
-          </div>
-
-          <div className="mt-16 text-center text-text-brown/60">
-            <p className="text-sm font-bold tracking-widest">#CATHERINEANDJAMES2025</p>
-            <div className="flex justify-center gap-6 mt-6">
-              <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center border border-primary/20 cursor-pointer hover:bg-primary hover:text-white transition-all shadow-sm">
-                <Share2 className="w-5 h-5" />
-              </div>
-              <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center border border-primary/20 cursor-pointer hover:bg-primary hover:text-white transition-all shadow-sm">
-                <Mail className="w-5 h-5" />
-              </div>
             </div>
           </div>
         </motion.div>
+
+        {/* Google Map */}
+        <section className="w-full max-w-5xl px-4 mt-16">
+          <div className="rounded-2xl overflow-hidden shadow-xl border border-primary/10 bg-beige-warm/30">
+            <div className="p-4 border-b border-primary/10 flex flex-wrap items-center justify-between gap-3">
+              <div className="flex items-center gap-2">
+                <MapPin className="text-primary w-5 h-5 shrink-0" />
+                <span className="text-sm font-semibold text-text-brown">6 Moo 3, Non Charoen, Ban Kruat, Buriram</span>
+              </div>
+              <a
+                href="https://www.google.com/maps/place/%E0%B8%99%E0%B9%89%E0%B8%B3%E0%B8%95%E0%B8%B2%E0%B8%A5+%E0%B8%8B%E0%B8%B2%E0%B8%A5%E0%B8%AD%E0%B8%99(%E0%B9%82%E0%B8%99%E0%B8%99%E0%B9%80%E0%B8%88%E0%B8%A3%E0%B8%B4%E0%B8%8D)/@14.4801292,103.1839575,17z?entry=ttu"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-bold text-primary hover:underline"
+              >
+                Open in Google Maps →
+              </a>
+            </div>
+            <div className="aspect-video w-full">
+              <iframe
+                title="Venue location - น้ำตาล ซาลอน (โนนเจริญ)"
+                src="https://www.google.com/maps?q=14.4801292,103.1839575&output=embed&z=17"
+                className="w-full h-full border-0"
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+          </div>
+        </section>
 
         {/* Our Story Section */}
         <section id="our-story" className="max-w-4xl mx-auto px-6 py-24 text-center w-full">
@@ -250,10 +276,9 @@ export default function App() {
             </p>
             <div className="rounded-2xl overflow-hidden shadow-2xl border border-primary/10 max-w-3xl mx-auto">
               <img 
-                src="https://picsum.photos/seed/wedding-casual/1200/800" 
-                alt="Jennapa & Sittisak Casual Moment" 
-                className="w-full h-auto"
-                referrerPolicy="no-referrer"
+                src="/assets/jenna-sittisak-casual.png" 
+                alt="Jennapa & Sittisak กับน้องหมา" 
+                className="w-full h-auto object-cover"
               />
             </div>
           </motion.div>
@@ -273,10 +298,9 @@ export default function App() {
               className="rounded-2xl overflow-hidden shadow-xl aspect-[4/5]"
             >
               <img 
-                src="https://picsum.photos/seed/wedding-formal/800/1000" 
-                alt="Formal portrait" 
+                src="/assets/gallery-dogs.png" 
+                alt="Jennapa & Sittisak กับน้องหมาบนทางเดิน" 
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                referrerPolicy="no-referrer"
               />
             </motion.div>
             <motion.div 
@@ -287,10 +311,9 @@ export default function App() {
               className="rounded-2xl overflow-hidden shadow-xl aspect-[4/5]"
             >
               <img 
-                src="https://picsum.photos/seed/wedding-casual/800/1000" 
-                alt="Casual moment" 
+                src="/assets/gallery-laugh.png" 
+                alt="Jennapa & Sittisak ช่วงเวลาสนุกบนหญ้า" 
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                referrerPolicy="no-referrer"
               />
             </motion.div>
             <motion.div 
@@ -301,21 +324,48 @@ export default function App() {
               className="rounded-2xl overflow-hidden shadow-xl aspect-[4/5]"
             >
               <img 
-                src="https://picsum.photos/seed/wedding-detail/800/1000" 
-                alt="Wedding detail" 
+                src="/assets/gallery-bouquet.png" 
+                alt="Jennapa & Sittisak กับช่อดอกไม้" 
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                referrerPolicy="no-referrer"
               />
             </motion.div>
           </div>
         </section>
+
+        {/* QR Code สำหรับใส่ซอง */}
+        <section id="qr-envelope" className="max-w-2xl mx-auto px-6 py-24 w-full">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center"
+          >
+            <span className="text-primary text-sm font-bold tracking-[0.4em] uppercase block mb-3">Gift</span>
+            <div className="h-px w-16 bg-primary/40 mx-auto mb-6"></div>
+            <h2 className="font-romantic text-3xl md:text-4xl text-text-brown mb-4">ร่วมแสดงความยินดีกับเรา</h2>
+            <p className="text-text-brown/70 text-sm mb-8 max-w-md mx-auto">
+              สแกน QR Code ด้านล่างเพื่อร่วมแสดงความยินดี ขอบคุณค่ะ/ครับ
+            </p>
+            <div className="inline-flex flex-col items-center p-6 bg-white rounded-2xl shadow-xl border border-primary/10">
+              <img
+                src="/assets/qr-envelope.png"
+                alt="QR Code สำหรับใส่ซอง"
+                className="w-52 h-52 md:w-56 md:h-56 object-contain"
+              />
+              <p className="mt-4 font-semibold text-text-brown text-lg">น.ส. เจนนภา รักพรม</p>
+            </div>
+            <p className="mt-8 text-text-brown/80 font-serif italic">Thank you sincerely</p>
+          </motion.div>
+        </section>
+        </div>
       </main>
 
       {/* Footer */}
       <footer className="bg-beige-warm py-16 border-t border-primary/10 text-center">
         <div className="max-w-7xl mx-auto px-6">
           <p className="font-romantic text-5xl text-primary mb-4">Jennapa & Sittisak</p>
-          <p className="text-xs text-text-brown/60 uppercase tracking-[0.5em] font-bold">February 26, 2026 • THE COTSWOLDS</p>
+          <p className="text-xs text-text-brown/60 uppercase tracking-[0.5em] font-bold">February 26, 2026 • Ban Kruat, Buriram</p>
           <div className="mt-12 flex justify-center items-center gap-2 text-text-brown/40 text-[10px] tracking-widest uppercase">
             <span>Made with love</span>
             <Heart className="w-3 h-3 text-coral-pink fill-current" />
