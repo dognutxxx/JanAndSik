@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-romantic: "Great Vibes", cursive;
+  --font-serif: "Playfair Display", serif;
+
+  --color-primary: #d48c8c;
+  --color-accent-pink: #f4cfcf;
+  --color-coral-pink: #e5989b;
+  --color-beige-warm: #f5f0e6;
+  --color-text-brown: #4a3728;
+  --color-background-light: #f5f0e6;
+  --color-background-dark: #2d241e;
+}
+
+@layer base {
+  body {
+    @apply bg-beige-warm text-text-brown font-sans;
+  }
+}
+
+.paper-texture {
+  background-color: #fdfaf5;
+  background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuDHb7PnxrIZV9rWBEgcq3jiLm1qBlZSPfKsO6kmEVM_XJ-IQc8AW4SufamP2-EKJwSJB5F5mCApD5ft7iCDkisvy25iZPPcQv-JgDdYO4Krbl1brluUSQs-b53wAo4t30ySoxciZAd4ULPCq46kVwS1qm7NtY7zzOfL1b9N_R6gHjBW65nWp1DX6U6f5BBZnkAEbvB7-y7DrYX_8Eo8gUhSLHp4vxF0PC0i_GFewaSjnFCqhw0GWhQjcedNzu96Or-h9wpgknaBlCeX);
+  background-blend-mode: multiply;
+}
